@@ -5,8 +5,8 @@ const { adminRegister, adminLogIn, getAdminDetail} = require('./controllers/admi
 // const { sclassCreate, sclassList, deleteSclass, deleteSclasses, getSclassDetail, getSclassStudents } = require('../controllers/class.js');
 // const { complainCreate, complainList } = require('../controllers/complain.js');
 // const { noticeCreate, noticeList, deleteNotices, deleteNotice, updateNotice } = require('../controllers/notice.js');
-// const {studentRegister,studentLogIn,getStudents,getStudentDetail,deleteStudents,deleteStudent,updateStudent,studentAttendance,deleteStudentsByClass,updateExamResult,clearAllStudentsAttendanceBySubject,
-//     clearAllStudentsAttendance, removeStudentAttendanceBySubject, removeStudentAttendance } = require('../controllers/student.js');
+const {studentRegister,studentLogIn,getStudents,getStudentDetail,deleteStudents,deleteStudent,updateStudent,studentAttendance,deleteStudentsByClass,updateExamResult,clearAllStudentsAttendanceBySubject,
+    clearAllStudentsAttendance, removeStudentAttendanceBySubject, removeStudentAttendance } = require('./controllers/student.js');
 // const { subjectCreate, classSubjects, deleteSubjectsByClass, getSubjectDetail, deleteSubject, freeSubjectList, allSubjects, deleteSubjects } = require('../controllers/subject.js');
 // const { teacherRegister, teacherLogIn, getTeachers, getTeacherDetail, deleteTeachers, deleteTeachersByClass, deleteTeacher, updateTeacherSubject, teacherAttendance } = require('../controllers/teacher.js');
 
@@ -19,27 +19,27 @@ router.get("/Admin/:id", getAdminDetail)
 
 
 // Student
-// router.post('/StudentReg', studentRegister);
-// router.post('/StudentLogin', studentLogIn)
+router.post('/StudentReg', studentRegister);
+router.post('/StudentLogin', studentLogIn)
 
-// router.get("/Students/:id", getStudents)
-// router.get("/Student/:id", getStudentDetail)
+router.get("/Students/:id", getStudents)
+router.get("/Student/:id", getStudentDetail)
 
-// router.delete("/Students/:id", deleteStudents)
-// router.delete("/StudentsClass/:id", deleteStudentsByClass)
-// router.delete("/Student/:id", deleteStudent)
+router.delete("/Students/:id", deleteStudents)
+router.delete("/StudentsClass/:id", deleteStudentsByClass)
+router.delete("/Student/:id", deleteStudent)
 
-// router.put("/Student/:id", updateStudent)
+router.put("/Student/:id", updateStudent)
 
-// router.put('/UpdateExamResult/:id', updateExamResult)
+router.put('/UpdateExamResult/:id', updateExamResult)
 
-// router.put('/StudentAttendance/:id', studentAttendance)
+router.put('/StudentAttendance/:id', studentAttendance)
 
-// router.put('/RemoveAllStudentsSubAtten/:id', clearAllStudentsAttendanceBySubject);
-// router.put('/RemoveAllStudentsAtten/:id', clearAllStudentsAttendance);
+router.put('/RemoveAllStudentsSubAtten/:id', clearAllStudentsAttendanceBySubject);
+router.put('/RemoveAllStudentsAtten/:id', clearAllStudentsAttendance);
 
-// router.put('/RemoveStudentSubAtten/:id', removeStudentAttendanceBySubject);
-// router.put('/RemoveStudentAtten/:id', removeStudentAttendance)
+router.put('/RemoveStudentSubAtten/:id', removeStudentAttendanceBySubject);
+router.put('/RemoveStudentAtten/:id', removeStudentAttendance)
 
 // // Teacher
 

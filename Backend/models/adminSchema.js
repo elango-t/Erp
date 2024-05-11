@@ -18,7 +18,7 @@ const adminSchema = new mongoose.Schema({
         type: String,
         default: "Admin"
     },
-    schoolName: {
+    collegeName: {
         type: String,
         unique: true,
         required: true
