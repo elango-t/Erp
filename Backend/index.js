@@ -4,7 +4,7 @@ const mongoose =require("mongoose");
 const dotenv=require("dotenv");
 const app=express();
 const Routes=require ("./route.js");
-const port =process.env.PORT || 3000;
+const port =process.env.PORT || 5000;
 
 
 dotenv.config();
