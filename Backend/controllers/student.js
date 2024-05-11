@@ -143,7 +143,7 @@ const updateStudent = async (req, res) => {
     }
 }
 
-const updatesemResult = async (req, res) => {
+const updateExamResult = async (req, res) => {
     const { subName, marksObtained } = req.body;
 
     try {
@@ -281,7 +281,7 @@ module.exports = {
     updateStudent,
     studentAttendance,
     deleteStudentsByClass,
-    updatesemResult,
+    updateExamResult,
     clearAllStudentsAttendanceBySubject,
     clearAllStudentsAttendance,
     removeStudentAttendanceBySubject,

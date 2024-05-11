@@ -24,7 +24,7 @@ const subjectSchema = new mongoose.Schema({
     },
     professor: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'teacher',
+        ref: 'professor',
     }
 }, { timestamps: true });
 

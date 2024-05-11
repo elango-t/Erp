@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 const { adminRegister, adminLogIn, getAdminDetail} = require('./controllers/admin.js');
 
- const { sclassCreate, sclassList, deleteSclass, deleteSclasses, getSclassDetail, getSclassStudents } = require('./controllers/class.js');
+ const { studentclassCreate, sclassList, deleteSclass, deleteSclasses, getSclassDetail, getSclassStudents } = require('./controllers/class.js');
 
  const { complainCreate, complainList } = require('./controllers/complain.js');
 
@@ -36,7 +36,7 @@ router.delete("/Student/:id", deleteStudent)
 
 router.put("/Student/:id", updateStudent)
 
-router.put('/UpdateExamResult/:id', updateExamResult)
+router.put('/UpdatesemResult/:id', updateExamResult)
 
 router.put('/StudentAttendance/:id', studentAttendance)
 
@@ -81,7 +81,7 @@ router.get('/ComplainList/:id', complainList);
 
 // // Sclass
 
-router.post('/SclassCreate', sclassCreate);
+router.post('/SclassCreate', studentclassCreate);
 
 router.get('/SclassList/:id', sclassList);
 router.get("/Sclass/:id", getSclassDetail)

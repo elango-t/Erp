@@ -11,7 +11,7 @@ dotenv.config();
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect("mongodb://localhost:27017/erp1",{
+mongoose.connect("mongodb://localhost:27017/Erp",{
     useNewUrlParser : true,
     useUnifiedTopology :true
 })

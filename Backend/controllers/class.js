@@ -3,15 +3,15 @@ const Student = require('../models/studentSchema.js');
 const Subject = require('../models/subjectSchema.js');
 const professor = require('../models/professorSchema.js');
 
-const sclassCreate = async (req, res) => {
+const studentclassCreate = async (req, res) => {
     try {
         const sclass = new Sclass({
-           studentclassName: req.body.sclassName,
+           studentclassName: req.body.studentclassName,
             college: req.body.adminID
         });
 
         const existingSclassByName = await Sclass.findOne({
-           studentclassName: req.body.sclassName,
+           studentclassName: req.body.studentclassName,
             college: req.body.adminID
         });
 
@@ -102,4 +102,4 @@ const deleteSclasses = async (req, res) => {
 }
 
 
-module.exports = { sclassCreate, sclassList, deleteSclass, deleteSclasses, getSclassDetail, getSclassStudents };
+module.exports = { studentclassCreate, sclassList, deleteSclass, deleteSclasses, getSclassDetail, getSclassStudents };

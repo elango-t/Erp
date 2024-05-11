@@ -16,12 +16,12 @@ const studentSchema = new mongoose.Schema({
     studentclassName: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'sclass',
-        required: true,
+        //required: true,
     },
     college: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'admin',
-        required: true,
+        //required: true,
     },
     role: {
         type: String,
