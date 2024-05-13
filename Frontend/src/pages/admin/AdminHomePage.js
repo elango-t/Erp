@@ -15,7 +15,7 @@ import { getAllTeachers } from '../../redux/teacherRelated/teacherHandle';
 const AdminHomePage = () => {
     const dispatch = useDispatch();
     const { studentsList } = useSelector((state) => state.student);
-    const { sclassesList } = useSelector((state) => state.sclass);
+    const { studentclassesList } = useSelector((state) => state.sclass);
     const { teachersList } = useSelector((state) => state.teacher);
 
     const { currentUser } = useSelector(state => state.user)
@@ -29,7 +29,7 @@ const AdminHomePage = () => {
     }, [adminID, dispatch]);
 
     const numberOfStudents = studentsList && studentsList.length;
-    const numberOfClasses = sclassesList && sclassesList.length;
+    const numberOfClasses = studentclassesList && studentclassesList.length;
     const numberOfTeachers = teachersList && teachersList.length;
 
     return (

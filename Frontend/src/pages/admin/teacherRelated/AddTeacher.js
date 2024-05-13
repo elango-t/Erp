@@ -29,12 +29,12 @@ const AddTeacher = () => {
   const [message, setMessage] = useState("");
   const [loader, setLoader] = useState(false)
 
-  const role = "Teacher"
-  const school = subjectDetails && subjectDetails.school
+  const role = "professor"
+  const college = subjectDetails && subjectDetails.college
   const teachSubject = subjectDetails && subjectDetails._id
-  const teachSclass = subjectDetails && subjectDetails.sclassName && subjectDetails.sclassName._id
+  const teachSclass = subjectDetails && subjectDetails.studentclassName && subjectDetails.studentclassName._id
 
-  const fields = { name, email, password, role, school, teachSubject, teachSclass }
+  const fields = { name, email, password, role, college, teachSubject, teachSclass }
 
   const submitHandler = (event) => {
     event.preventDefault()
@@ -43,7 +43,9 @@ const AddTeacher = () => {
   }
 
   useEffect(() => {
-    if (status === 'added') {
+    console.log(status);
+      if ( status ==='failed') {
+        console.log(status);
       dispatch(underControl())
       navigate("/Admin/teachers")
     }
@@ -52,7 +54,7 @@ const AddTeacher = () => {
       setShowPopup(true)
       setLoader(false)
     }
-    else if (status === 'error') {
+    else if (status === 'added') {
       setMessage("Network Error")
       setShowPopup(true)
       setLoader(false)
@@ -69,7 +71,7 @@ const AddTeacher = () => {
             Subject : {subjectDetails && subjectDetails.subName}
           </label>
           <label>
-            Class : {subjectDetails && subjectDetails.sclassName && subjectDetails.sclassName.sclassName}
+            Class : {subjectDetails && subjectDetails.studentclassName && subjectDetails.studentclassName.studentclassName}
           </label>
           <label>Name</label>
           <input className="registerInput" type="text" placeholder="Enter teacher's name..."

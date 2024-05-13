@@ -19,7 +19,7 @@ const StudentHomePage = () => {
 
     const [subjectAttendance, setSubjectAttendance] = useState([]);
 
-    const classID = currentUser.sclassName._id
+    const classID = currentUser.studentclassName._id
 
     useEffect(() => {
         dispatch(getUserDetails(currentUser._id, "Student"));

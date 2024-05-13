@@ -1,15 +1,15 @@
 const mongoose = require("mongoose");
 
 const studentclassSchema = new mongoose.Schema({
-    sclassName: {
+    studentclassName: {
         type: String,
         required: true,
     },
-    school: {
+    college: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'admin'
     },
 }, { timestamps: true });
 
-module.exports = mongoose.model("sclass", studentclassSchema);
+module.exports = mongoose.model("studentclass", studentclassSchema);
 

@@ -36,8 +36,8 @@ const ViewStudent = () => {
     }, [dispatch, studentID])
 
     useEffect(() => {
-        if (userDetails && userDetails.sclassName && userDetails.sclassName._id !== undefined) {
-            dispatch(getSubjectList(userDetails.sclassName._id, "ClassSubjects"));
+        if (userDetails && userDetails.studentclassName && userDetails.studentclassName._id !== undefined) {
+            dispatch(getSubjectList(userDetails.studentclassName._id, "ClassSubjects"));
         }
     }, [dispatch, userDetails]);
 
@@ -47,8 +47,8 @@ const ViewStudent = () => {
     const [name, setName] = useState('');
     const [rollNum, setRollNum] = useState('');
     const [password, setPassword] = useState('');
-    const [sclassName, setSclassName] = useState('');
-    const [studentSchool, setStudentSchool] = useState('');
+    const [studentclassName, setStudentclassName] = useState('');
+    const [studentcollege, setStudentcollege] = useState('');
     const [subjectMarks, setSubjectMarks] = useState('');
     const [subjectAttendance, setSubjectAttendance] = useState([]);
 
@@ -83,9 +83,9 @@ const ViewStudent = () => {
         if (userDetails) {
             setName(userDetails.name || '');
             setRollNum(userDetails.rollNum || '');
-            setSclassName(userDetails.sclassName || '');
-            setStudentSchool(userDetails.school || '');
-            setSubjectMarks(userDetails.examResult || '');
+            setStudentclassName(userDetails.studentclassName || '');
+            setStudentcollege(userDetails.college || '');
+            setSubjectMarks(userDetails.semResult || '');
             setSubjectAttendance(userDetails.attendance || []);
         }
     }, [userDetails]);
@@ -346,9 +346,9 @@ const ViewStudent = () => {
                 <br />
                 Roll Number: {userDetails.rollNum}
                 <br />
-                Class: {sclassName.sclassName}
+                Class: {studentclassName.studentclassName}
                 <br />
-                School: {studentSchool.schoolName}
+                college: {studentcollege.collegeName}
                 {
                     subjectAttendance && Array.isArray(subjectAttendance) && subjectAttendance.length > 0 && (
                         <CustomPieChart data={chartData} />
@@ -358,40 +358,7 @@ const ViewStudent = () => {
                     Delete
                 </Button>
                 <br />
-                {/* <Button variant="contained" sx={styles.styledButton} className="show-tab" onClick={() => { setShowTab(!showTab) }}>
-                    {
-                        showTab
-                            ? <KeyboardArrowUp />
-                            : <KeyboardArrowDown />
-                    }
-                    Edit Student
-                </Button>
-                <Collapse in={showTab} timeout="auto" unmountOnExit>
-                    <div className="register">
-                        <form className="registerForm" onSubmit={submitHandler}>
-                            <span className="registerTitle">Edit Details</span>
-                            <label>Name</label>
-                            <input className="registerInput" type="text" placeholder="Enter user's name..."
-                                value={name}
-                                onChange={(event) => setName(event.target.value)}
-                                autoComplete="name" required />
-
-                            <label>Roll Number</label>
-                            <input className="registerInput" type="number" placeholder="Enter user's Roll Number..."
-                                value={rollNum}
-                                onChange={(event) => setRollNum(event.target.value)}
-                                required />
-
-                            <label>Password</label>
-                            <input className="registerInput" type="password" placeholder="Enter user's password..."
-                                value={password}
-                                onChange={(event) => setPassword(event.target.value)}
-                                autoComplete="new-password" />
-
-                            <button className="registerButton" type="submit" >Update</button>
-                        </form>
-                    </div>
-                </Collapse> */}
+                {}
             </div>
         )
     }

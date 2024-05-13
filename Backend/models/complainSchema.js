@@ -4,7 +4,7 @@ const complainSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'student',
-        required: true
+        //required: true
     },
     date: {
         type: Date,
@@ -17,7 +17,7 @@ const complainSchema = new mongoose.Schema({
     college: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'admin',
-        required: true,
+        //required: true,
     }
 });
 

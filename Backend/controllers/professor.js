@@ -1,58 +1,62 @@
 const bcrypt = require('bcrypt');
-const professor = require('../models/professorSchema.js');
+const Professor = require('../models/professorSchema.js');
 const Subject = require('../models/subjectSchema.js');
 
 const professorRegister = async (req, res) => {
-    const { name, email, password, role,college, teachSubject, teachSclass } = req.body;
+    const { name, email, password, role, college, teachSubject, teachSclass } = req.body;
+    console.log("b");
     try {
         const salt = await bcrypt.genSalt(10);
         const hashedPass = await bcrypt.hash(password, salt);
 
-        const professor = new professor({ name, email, password: hashedPass, role,college, teachSubject, teachSclass });
+        const professorInstance = new Professor({ name, email, password: hashedPass, role, college, teachSubject, teachSclass });
+        console.log("b");
+        const existingProfessorByEmail = await Professor.findOne({ email });
 
-        const existingprofessorByEmail = await professor.findOne({ email });
-
-        if (existingprofessorByEmail) {
+        if (existingProfessorByEmail) {
             res.send({ message: 'Email already exists' });
         }
         else {
-            let result = await professor.save();
-            await Subject.findByIdAndUpdate(teachSubject, { professor: professor._id });
+            let result = await professorInstance.save();
+            await Subject.findByIdAndUpdate(teachSubject, { professor: professorInstance._id });
             result.password = undefined;
             res.send(result);
         }
     } catch (err) {
+        console.log(err);
         res.status(500).json(err);
     }
 };
 
+
 const professorLogIn = async (req, res) => {
     try {
-        let professor = await professor.findOne({ email: req.body.email });
+        let professor = await Professor.findOne({ email: req.body.email }); // Change 'professor' to 'Professor'
         if (professor) {
             const validated = await bcrypt.compare(req.body.password, professor.password);
             if (validated) {
                 professor = await professor.populate("teachSubject", "subName sessions")
-                professor = await professor.populate("school", "schoolName")
-                professor = await professor.populate("teachSclass", "sclassName")
+                professor = await professor.populate("college", "collegeName")
+                professor = await professor.populate("teachSclass", "studentclassName")
                 professor.password = undefined;
                 res.send(professor);
             } else {
                 res.send({ message: "Invalid password" });
             }
         } else {
-            res.send({ message: "professor not found" });
+            res.send({ message: "Professor not found" });
         }
     } catch (err) {
         res.status(500).json(err);
     }
 };
 
+
 const getprofessors = async (req, res) => {
     try {
         let professors = await professor.find({college: req.params.id })
             .populate("teachSubject", "subName")
-            .populate("teachSclass", "sclassName");
+            .populate("teachSclass", "studentclassName");
         if (professors.length > 0) {
             let modifiedprofessors = professors.map((professor) => {
                 return { ...professor._doc, password: undefined };
@@ -70,8 +74,8 @@ const getprofessorDetail = async (req, res) => {
     try {
         let professor = await professor.findById(req.params.id)
             .populate("teachSubject", "subName sessions")
-            .populate("school", "schoolName")
-            .populate("teachSclass", "sclassName")
+            .populate("college", "collegeName")
+            .populate("teachSclass", "studentclassName")
         if (professor) {
             professor.password = undefined;
             res.send(professor);
@@ -142,7 +146,7 @@ const deleteprofessors = async (req, res) => {
 
 const deleteprofessorsByClass = async (req, res) => {
     try {
-        const deletionResult = await professor.deleteMany({ sclassName: req.params.id });
+        const deletionResult = await professor.deleteMany({ studentclassName: req.params.id });
 
         const deletedCount = deletionResult.deletedCount || 0;
 
@@ -151,7 +155,7 @@ const deleteprofessorsByClass = async (req, res) => {
             return;
         }
 
-        const deletedprofessors = await professor.find({ sclassName: req.params.id });
+        const deletedprofessors = await professor.find({ studentclassName: req.params.id });
 
         await Subject.updateMany(
             { professor: { $in: deletedprofessors.map(professor => professor._id) }, professor: { $exists: true } },

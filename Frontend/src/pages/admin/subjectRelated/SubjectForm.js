@@ -16,7 +16,7 @@ const SubjectForm = () => {
     const userState = useSelector(state => state.user);
     const { status, currentUser, response, error } = userState;
 
-    const sclassName = params.id
+    const studentclassName = params.id
     const adminID = currentUser._id
     const address = "Subject"
 
@@ -53,7 +53,7 @@ const SubjectForm = () => {
     };
 
     const fields = {
-        sclassName,
+        studentclassName,
         subjects: subjects.map((subject) => ({
             subName: subject.subName,
             subCode: subject.subCode,

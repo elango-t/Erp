@@ -20,7 +20,7 @@ const AddStudent = ({ situation }) => {
     const [rollNum, setRollNum] = useState('');
     const [password, setPassword] = useState('')
     const [className, setClassName] = useState('')
-    const [sclassName, setSclassName] = useState('')
+    const [studentclassName, setStudentclassName] = useState('')
 
     const adminID = currentUser._id
     const role = "Student"
@@ -28,7 +28,7 @@ const AddStudent = ({ situation }) => {
 
     useEffect(() => {
         if (situation === "Class") {
-            setSclassName(params.id);
+            setStudentclassName(params.id);
         }
     }, [params.id, situation]);
 
@@ -43,21 +43,21 @@ const AddStudent = ({ situation }) => {
     const changeHandler = (event) => {
         if (event.target.value === 'Select Class') {
             setClassName('Select Class');
-            setSclassName('');
+            setStudentclassName('');
         } else {
             const selectedClass = sclassesList.find(
-                (classItem) => classItem.sclassName === event.target.value
+                (classItem) => classItem.studentclassName === event.target.value
             );
-            setClassName(selectedClass.sclassName);
-            setSclassName(selectedClass._id);
+            setClassName(selectedClass.studentclassName);
+            setStudentclassName(selectedClass._id);
         }
     }
 
-    const fields = { name, rollNum, password, sclassName, adminID, role, attendance }
+    const fields = { name, rollNum, password, studentclassName, adminID, role, attendance }
 
     const submitHandler = (event) => {
         event.preventDefault()
-        if (sclassName === "") {
+        if (studentclassName === "") {
             setMessage("Please select a classname")
             setShowPopup(true)
         }
@@ -105,8 +105,8 @@ const AddStudent = ({ situation }) => {
                                 onChange={changeHandler} required>
                                 <option value='Select Class'>Select Class</option>
                                 {sclassesList.map((classItem, index) => (
-                                    <option key={index} value={classItem.sclassName}>
-                                        {classItem.sclassName}
+                                    <option key={index} value={classItem.studentclassName}>
+                                        {classItem.studentclassName}
                                     </option>
                                 ))}
                             </select>
