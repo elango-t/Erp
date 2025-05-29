@@ -18,7 +18,8 @@ const AdminRegisterPage = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const { status, currentUser, response, error, currentRole } = useSelector(state => state.user);;
+    const { status, currentUser, response, error, currentRole } = useSelector(state => state.user);
+   //console.log(response,currentUser);
 
     const [toggle, setToggle] = useState(false)
     const [loader, setLoader] = useState(false)
@@ -48,6 +49,7 @@ const AdminRegisterPage = () => {
         }
 
         const fields = { name, email, password, role, collegeName }
+        console.log(fields);
         setLoader(true)
         dispatch(registerUser(fields, role))
     };
@@ -61,7 +63,7 @@ const AdminRegisterPage = () => {
     };
 
     useEffect(() => {
-        console.log(status);
+     console.log(status,currentUser,currentRole);
         if (status === 'success' || status === 'failed' ||(currentUser !== null && currentRole === 'Admin')) {
             navigate('/Admin/dashboard');
         }

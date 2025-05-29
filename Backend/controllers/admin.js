@@ -21,6 +21,7 @@ const adminLogIn = async (req, res) => {
 
 const adminRegister = async (req, res) => {
     try {
+        
         const admin = new Admin({
             ...req.body
         });

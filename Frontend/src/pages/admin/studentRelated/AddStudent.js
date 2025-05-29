@@ -70,7 +70,7 @@ const AddStudent = ({ situation }) => {
     useEffect(() => {
         if (status === 'added') {
             dispatch(underControl())
-            navigate(-1)
+           // navigate(-1)
         }
         else if (status === 'failed') {
             setMessage(response)

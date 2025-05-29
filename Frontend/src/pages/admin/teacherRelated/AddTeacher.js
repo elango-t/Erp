@@ -30,9 +30,9 @@ const AddTeacher = () => {
   const [loader, setLoader] = useState(false)
 
   const role = "professor"
-  const college = subjectDetails && subjectDetails.college
+  const college ="664a0de76aa7395a61fe55f9"
   const teachSubject = subjectDetails && subjectDetails._id
-  const teachSclass = subjectDetails && subjectDetails.studentclassName && subjectDetails.studentclassName._id
+  const teachSclass = "664a0e016aa7395a61fe5611"
 
   const fields = { name, email, password, role, college, teachSubject, teachSclass }
 

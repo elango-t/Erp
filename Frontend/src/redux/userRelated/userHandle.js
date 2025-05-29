@@ -15,36 +15,45 @@ import {
 
 export const loginUser = (fields, role) => async (dispatch) => {
     dispatch(authRequest());
-
+if(role==="Teacher")
+    role="professor";
+    console.log(role);
     try {
         const result = await axios.post(`${process.env.REACT_APP_BASE_URL}/${role}Login`, fields, {
             headers: { 'Content-Type': 'application/json' },
         });
         if (result.data.role) {
+            if(result.data.role=="professor")
+                result.data.role="Teacher";
             dispatch(authSuccess(result.data));
         } else {
             dispatch(authFailed(result.data.message));
+
         }
+        console.log(result);
     } catch (error) {
         dispatch(authError(error));
+        console.log("result not found");
     }
+   
 };
 
 export const registerUser = (fields, role) => async (dispatch) => {
     dispatch(authRequest());
-
+ console.log(role,fields);
     try {
         const result = await axios.post(`${process.env.REACT_APP_BASE_URL}/${role}Reg`, fields, {
             headers: { 'Content-Type': 'application/json' },
         });
-        if (result.data.college) {
+        console.log(result);
+        if (result.data.collegeName) {
             dispatch(authSuccess(result.data));
         }
-        else if (result.data.college) {
+        else if (result.data.collegeName) {
             dispatch(stuffAdded());
         }
         else {
-            dispatch(authFailed(result.data.message));
+            dispatch(authSuccess(result.data));
         }
     } catch (error) {
         dispatch(authError(error));

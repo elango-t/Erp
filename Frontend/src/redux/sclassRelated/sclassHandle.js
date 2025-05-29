@@ -90,6 +90,7 @@ export const getSubjectDetails = (id, address) => async (dispatch) => {
 
     try {
         const result = await axios.get(`${process.env.REACT_APP_BASE_URL}/${address}/${id}`);
+        console.log("h",result);
         if (result.data) {
             dispatch(getSubDetailsSuccess(result.data));
         }

@@ -21,7 +21,7 @@ const professorSchema = new mongoose.Schema({
    college: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'admin',
-       // required: true,
+        required: true,
     },
     teachSubject: {
         type: mongoose.Schema.Types.ObjectId,
@@ -30,7 +30,7 @@ const professorSchema = new mongoose.Schema({
     teachSclass: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'studentclass',
-        //required: true,
+        required: true,
     },
     attendance: [{
         date: {

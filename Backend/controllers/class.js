@@ -56,7 +56,7 @@ const getSclassDetail = async (req, res) => {
 }
 
 const getSclassStudents = async (req, res) => {
-    try {
+    try { 
         let students = await Student.find({studentclassName: req.params.id })
         if (students.length > 0) {
             let modifiedStudents = students.map((student) => {
